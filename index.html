@@ -401,167 +401,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/13/request/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="山丘">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/blog-logo.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="山丘">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/13/request/" itemprop="url">request</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-13T18:12:00+08:00">
-                2018-04-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="安装和文档地址"><a href="#安装和文档地址" class="headerlink" title="安装和文档地址"></a>安装和文档地址</h4><p>直接使用pip可以非常方便的安装<br><code>pip install requests</code><br>中文文档：<a href="http://docs.python-requests.org/zh_CN/latest/index.html" target="_blank" rel="noopener">http://docs.python-requests.org/zh_CN/latest/index.html</a><br>github地址：<a href="https://github.com/requests/requests" target="_blank" rel="noopener">https://github.com/requests/requests</a></p>
-<h4 id="发送get请求"><a href="#发送get请求" class="headerlink" title="发送get请求"></a>发送get请求</h4><ol>
-<li><p>最简单的发送get请求</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">response = requests.get(<span class="string">'https://www.baidu.com/'</span>)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>respnse.text和response.content的区别</p>
-<ul>
-<li>response.content:这个是直接从网络上抓取的数据，没有经过任何的解码，所以是bytes类型，其实在硬盘上和网络上的字符串都是bytes类型</li>
-<li>response.text：这个是requests，将response.content进行解码的字符串，解码需要指定一个编码方式，requests对根据自己的猜测来判断解码的方式，所以有时候会产生乱码，这个时候就应该使用<code>response.content.decode(&#39;utf-8&#39;)</code>来进行手动解码</li>
-</ul>
-</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">response = requests.get(<span class="string">'https://www.baidu.com/'</span>)</span><br><span class="line"><span class="comment"># 这个返回的是Unicode格式的数据类型，也就是字符串，</span></span><br><span class="line"><span class="comment"># 但是使用这个有弊端，中文乱码，还不能自己指定打印出来的字符类型</span></span><br><span class="line">print(type(response.text))</span><br><span class="line">print(response.text)</span><br><span class="line"><span class="comment"># 这个返回的是字节流数据，也就是bytes类型，使用这个打印出来的</span></span><br><span class="line"><span class="comment"># 中文依然是乱码，但是这个可以进行解码,decode('utf-8')</span></span><br><span class="line">print(type(response.content))</span><br><span class="line">print(response.content.decode(<span class="string">'utf-8'</span>))</span><br><span class="line"><span class="comment"># 这是一些常用的方法</span></span><br><span class="line">print(response.url) <span class="comment"># 查看完整的url地址</span></span><br><span class="line">print(response.encoding) <span class="comment"># 查看响应头部的字符编码</span></span><br><span class="line">print(response.status_code) <span class="comment"># 查看响应码</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li><img src="https://i.loli.net/2018/04/10/5acc6106af3a1.png" alt="text打印出来的.png"></li>
-<li><img src="https://i.loli.net/2018/04/10/5acc61349ff49.png" alt="content并指定utf-8.png"></li>
-</ul>
-<ol>
-<li>添加headers和查询参数<ul>
-<li>如果想添加 headers，可以传入headers参数来增加请求头中的headers信息</li>
-<li>如果要将参数放在url中传递，可以利用 params 参数<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">kw = &#123;</span><br><span class="line">    <span class="string">'wd'</span>:<span class="string">'山丘'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">'User-Agent'</span>:<span class="string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># params 接收一个字典或者字符串的查询参数，字典类型自动转换为url编码，不需要urlencode()</span></span><br><span class="line">resp = requests.get(<span class="string">'http://www.baidu.com/s'</span>,params=kw,headers=headers)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这里写入的时候需要注意编码格式</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'baidu.html'</span>,<span class="string">'w'</span>,encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> fp:</span><br><span class="line">    <span class="comment"># 写入的格式一般就是这样</span></span><br><span class="line">    fp.write(resp.content.decode(<span class="string">'utf-8'</span>))</span><br><span class="line">print(resp.url)</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ol>
-<p><img src="https://i.loli.net/2018/04/10/5acc6274eb240.png" alt="看到打印的url.png"></p>
-<h4 id="发送post请求"><a href="#发送post请求" class="headerlink" title="发送post请求"></a>发送post请求</h4><ol>
-<li><p>最基本的POST请求可以使用post方法</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response = requests.post(<span class="string">"http://www.baidu.com/"</span>,data=data)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>传入data数据</p>
-<ul>
-<li>这时候就不要再使用urlencode进行编码了，直接传入一个字典进去就可以了<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#encoding: utf-8</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">'https://www.lagou.com/jobs/positionAjax.json?needAddtionalResult=false&amp;isSchoolJob=0'</span></span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">'User-Agent'</span>:<span class="string">'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36'</span>,</span><br><span class="line">    <span class="string">'Referer'</span>:<span class="string">'https://www.lagou.com/jobs/list_python?city=%E5%85%A8%E5%9B%BD&amp;cl=false&amp;fromSearch=true&amp;labelWords=&amp;suginput='</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">data = &#123;</span><br><span class="line">    <span class="string">'first'</span>:<span class="string">'true'</span>,</span><br><span class="line">    <span class="string">'pn'</span>:<span class="number">3</span>,</span><br><span class="line">    <span class="string">'kd'</span>:<span class="string">'python'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">resp = requests.post(url=url,data=data,headers=headers)</span><br><span class="line"><span class="comment"># 如果是json数据，直接可以调用json方法,返回的字典</span></span><br><span class="line">print(resp.json())</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ol>
-<p><img src="https://i.loli.net/2018/04/10/5acc63744c48a.png" alt="获取到返回的json数据.png"></p>
-<h4 id="使用代理"><a href="#使用代理" class="headerlink" title="使用代理"></a>使用代理</h4><p>使用requests添加代理也非常简单，只要在请求的方法中（比如get或者post）传递proxies参数就可以了<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#encoding: utf-8</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url = <span class="string">'https://httpbin.org/ip'</span></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">'User-Agent'</span>:<span class="string">'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">proxy = &#123;</span><br><span class="line">    <span class="string">'http'</span>:<span class="string">'117.28.144.33:21879'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">resp = requests.get(url,headers=headers,proxies=proxy)</span><br><span class="line">print(resp.text)</span><br></pre></td></tr></table></figure></p>
-<h4 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h4><p>如果在一个响应中包含了cookie，那么可以利用cookies属性拿到这个返回的cookie<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#encdoing: utf-8</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">resp = requests.get(<span class="string">'https://www.baidu.com'</span>)</span><br><span class="line"><span class="comment"># 获取cookie信息</span></span><br><span class="line"><span class="comment"># print(resp.cookies)</span></span><br><span class="line"><span class="comment"># 以字典的形式获取cookie信息</span></span><br><span class="line">print(resp.cookies.get_dict())</span><br></pre></td></tr></table></figure></p>
-<h4 id="session"><a href="#session" class="headerlink" title="session"></a>session</h4><p>之前使用urllib库，是可以使用opener发送多个请求，多个请求之间是可以共享cookie的,<br>如果使用requests也要达到共享cookie的目的，那么这个时候就可以使用session对象<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#encdoing: utf-8</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">'http://www.renren.com/PLogin.do'</span></span><br><span class="line">data = &#123;<span class="string">'email'</span>:<span class="string">'15837503603'</span>,<span class="string">'password'</span>:<span class="string">'python'</span>&#125;</span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 登陆,这个session中已经存了cookie信息，以后用session访问</span></span><br><span class="line">session = requests.session()</span><br><span class="line">session.post(url=url,headers=headers,data=data)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 访问你想访问的个人主页</span></span><br><span class="line">url2 = <span class="string">'http://www.renren.com/880151247/profile'</span></span><br><span class="line">resp = session.get(url=url2,headers=headers)</span><br><span class="line">print(resp.content.decode(<span class="string">'utf-8'</span>))</span><br></pre></td></tr></table></figure></p>
-<h4 id="处理不信任的SSL证书"><a href="#处理不信任的SSL证书" class="headerlink" title="处理不信任的SSL证书"></a>处理不信任的SSL证书</h4><p>对于那些已经被信任的SSL整数的网站，比如<a href="https://www.baidu.com/，那么使用requests直接就可以正常的返回响应" target="_blank" rel="noopener">https://www.baidu.com/，那么使用requests直接就可以正常的返回响应</a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">resp = requests.get(<span class="string">'http://www.12306.cn/mormhweb/'</span>,verify=<span class="keyword">False</span>)</span><br><span class="line">print(resp.content.decode(<span class="string">'utf-8'</span>))</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/14/你好/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -862,7 +701,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -879,15 +718,6 @@
               </div>
             
 
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">1</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
             
 
           </nav>
@@ -950,7 +780,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共4.0k字</span>
+  <span class="post-count">博客全站共2.8k字</span>
 </div>
 
 
