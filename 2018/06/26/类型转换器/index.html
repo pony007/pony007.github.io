@@ -85,17 +85,17 @@
 
 
 
-<meta name="description" content="关于我一个学习前端知识的小菜鸟">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+<meta name="description" content="为什么使用类型转换器?浏览器中的数据类型比较少,通常只有字符串和字符串数组. 当传递到后台程序时,后台程序含有多种数据类型,此时需要进行类型转换">
+<meta property="og:type" content="article">
+<meta property="og:title" content="类型转换器">
+<meta property="og:url" content="http://yoursite.com/2018/06/26/类型转换器/index.html">
 <meta property="og:site_name" content="山丘">
-<meta property="og:description" content="关于我一个学习前端知识的小菜鸟">
+<meta property="og:description" content="为什么使用类型转换器?浏览器中的数据类型比较少,通常只有字符串和字符串数组. 当传递到后台程序时,后台程序含有多种数据类型,此时需要进行类型转换">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-14T08:06:08.859Z">
+<meta property="og:updated_time" content="2018-06-27T02:38:16.196Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
-<meta name="twitter:description" content="关于我一个学习前端知识的小菜鸟">
+<meta name="twitter:title" content="类型转换器">
+<meta name="twitter:description" content="为什么使用类型转换器?浏览器中的数据类型比较少,通常只有字符串和字符串数组. 当传递到后台程序时,后台程序含有多种数据类型,此时需要进行类型转换">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/about/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/06/26/类型转换器/"/>
 
 
 
 
 
-  <title>about | 山丘</title>
+  <title>类型转换器 | 山丘</title>
   
 
 
@@ -243,34 +243,211 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/26/类型转换器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="山丘">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/blog-logo.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="山丘">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">about</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>一个学习前端知识的小菜鸟</p>
-
+          <h1 class="post-title" itemprop="name headline">类型转换器</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-26T14:18:07+08:00">
+                2018-06-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/struts/" itemprop="url" rel="index">
+                    <span itemprop="name">struts</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>为什么使用类型转换器?<br>浏览器中的数据类型比较少,通常只有字符串和字符串数组. 当传递到后台程序时,后台程序含有多种数据类型,此时需要进行类型转换<br><a id="more"></a></p>
+<h4 id="struts2类型转换器"><a href="#struts2类型转换器" class="headerlink" title="struts2类型转换器:"></a>struts2类型转换器:</h4><ol>
+<li>内置类型转换器<ul>
+<li>数字类型转换器,字符串类型转换器,日期类型转换器 等等</li>
+</ul>
+</li>
+<li>自定义类型转换器<ul>
+<li>解决特殊或个人个性的数据格式或类型</li>
+</ul>
+</li>
+</ol>
+<h4 id="自定义类型转换器"><a href="#自定义类型转换器" class="headerlink" title="自定义类型转换器"></a>自定义类型转换器</h4><ol>
+<li>创建转换器类型,继承DefaultTypeConverter类</li>
+<li>重写DefaultTypeConverter类的类型转换方法,实现类型转换,类型转换的可逆性</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	 * context中存放转换后的数据，不需要操作</span></span><br><span class="line"><span class="comment">	 * value中存放的是原数据</span></span><br><span class="line"><span class="comment">	 * toType中存放的是转换的类型</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">convertValue</span><span class="params">(Map&lt;String, Object&gt; context, Object value, Class toType)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">super</span>.convertValue(context, value, toType);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>注册类型转换器<ul>
+<li>根据注册方式不同,分为局部类型转换器和全局类型转换器<br>注意: 使用方式完全相同,区别只在注册方式上[文件名和位置]</li>
+</ul>
+</li>
+<li>局部类型转换器<br><code>action类名-conversion.properties  [属性名=类型转换器 全名]</code></li>
+<li>全局类型转换器<br><code>xwork-conversion.properties  [被转换类型=类型转换器 全名]</code></li>
+</ol>
+
       
     </div>
     
     
     
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="山丘 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/25/国际化/" rel="next" title="国际化">
+                <i class="fa fa-chevron-left"></i> 国际化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/27/文件上传/" rel="prev" title="文件上传">
+                文件上传 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -382,7 +559,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于我"><span class="nav-number">1.</span> <span class="nav-text">关于我</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#struts2类型转换器"><span class="nav-number">1.</span> <span class="nav-text">struts2类型转换器:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义类型转换器"><span class="nav-number">2.</span> <span class="nav-text">自定义类型转换器</span></a></li></ol></div>
             
 
           </div>
